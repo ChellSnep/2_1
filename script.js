@@ -33,7 +33,23 @@
   });
 
   cw2.addEventListener("click", function () {
-    //TODO
+    answer.innerHTML = "Loading...";
+
+    const selectedId = postId.value;
+
+    fetch(`https://jsonplaceholder.typicode.com/posts/${selectedId}`)
+      .then((response) => response.json())
+      .then((post) => {
+        setTimeout(() => {
+          let htmlPost = `
+            <ul>
+              <li><strong>${post.title}</strong><br>${post.body}</li>
+            </ul>
+          `;
+
+          answer.innerHTML = htmlPost;
+        }, 1000);
+      });
   });
 
   cw3.addEventListener("click", function () {
