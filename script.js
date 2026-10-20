@@ -15,15 +15,20 @@
   });
 
   cw1.addEventListener("click", function () {
+    answer.innerHTML = "Loading...";
+
     fetch("https://jsonplaceholder.typicode.com/posts")
       .then((response) => response.json())
       .then((posts) => {
-        let htmlList = "<ul>";
-        posts.forEach((post) => {
-          htmlList += `<li><strong>${post.title}</strong><br>${post.body}</li>`;
-        });
-        htmlList += "</ul>";
-        answer.innerHTML = htmlList;
+        setTimeout(() => {
+          let htmlList = "<ul>";
+          posts.forEach((post) => {
+            htmlList += `<li><strong>${post.title}</strong><br>${post.body}</li>`;
+          });
+          htmlList += "</ul>";
+
+          answer.innerHTML = htmlList;
+        }, 1000);
       });
   });
 
